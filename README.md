@@ -63,3 +63,33 @@ two
 three: 99
 four
 ```
+
+## 3. Nested effects & dynamic binding
+Effect handler have similar behaviour to exceptions when it comes to handler resolution. When we perform an effect, the runtime searches up the stack for the first handler than handles the type of effect we have performed:
+
+```
+try {
+    perform One()
+    try {
+        perform One()
+        perform Two()
+    } handle (e: One) {
+        println("One inner")
+    } handle (e: Two) {
+        println("Two")
+    }
+    perform Two()
+} handle(e: One) {
+    println("One")
+}
+```
+
+The resulting output will be
+
+```
+One
+One inner
+Two
+Error: unhandled exception "Unhandled effect"
+
+## 4. 
