@@ -1,6 +1,6 @@
-import stdx.effect.{Command, Resumption}
+import stdx.effect.Command
 
-class Yield <: Command<Unit>
+class Yield <: Command<Unit> {}
 
 func rrScheduler(one: () -> Unit, two: () -> Unit) {
     try {

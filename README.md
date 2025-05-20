@@ -241,4 +241,43 @@ popUpHandler({ => application() })
 The full listing can be found in [06dependencyinjection.cj](06dependencyinjection.cj)
 
 ## 7. Custom Concurrency
-One of the most powerful features of effect handlers is the ability
+One of the most powerful features of effect handlers is the ability to implement multiple types lightweight concurrency.
+
+
+
+[07concurrency.cj](07concurrency.cj) implements a very basic round-robin scheduler that allows two "threads" to execute and interleave cooperatively
+```
+func rrScheduler(one: () -> Unit, two: () -> Unit) {
+    try {
+        one()
+    } handle(_: Yield) {
+        rrScheduler(u, { => resume })
+    }
+}
+
+func ping() {
+    println("Ping")
+    perform Yield()
+    println("Ping")
+    perform Yield()
+}
+
+func pong() {
+    println("Pong")
+    perform Yield()
+    println("Pong")
+    perform Yield()
+}
+
+main() {
+    rrScheduler(ping, pong)
+}
+```
+
+This will output
+```
+Ping
+Pong
+Ping
+Pong
+```
