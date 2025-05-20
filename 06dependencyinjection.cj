@@ -1,5 +1,9 @@
 import stdx.effect.Command
 
+func makePopup(msg: String) {
+    println("dummy function: ${msg}")
+}
+
 class Alert <: Command<Unit> {
     Alert(let message: String = message) {}
 }
