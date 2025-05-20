@@ -142,7 +142,35 @@ println("three")
 will never execute.
 
 ## 5. Default Handlers
+We have the option of defining a default handler for a `Command<T>`, meaning that an unhandled effect will be handled by a global handler for that type.
+
+A default handler is defined by defining the `defaultImpl` instance method:
+
+```
+class Default <: Command<Unit> {
+    public func defaultImpl() {
+        println("default")
+    }
+}
+```
+
+Running the following program
+```
+println("one")
+perform Default()
+println("two")
+```
+
+will result in 
+```
+one
+default
+two
+```
+with no errors produced
+
+The full listing is in [05default.cj](05default.cj)
 
 ## 6. Dependency Injection
-C
+
 ## 7. Custom Concurrency
