@@ -4,6 +4,13 @@ class Alert <: Command<Unit> {
     Alert(let message: String = message) {}
 }
 
+func app() {
+    var error = true
+    if (error) {
+        perform Alert("error")
+    }
+}
+
 func stdOutHandler(fn: () -> Unit) {
     try {
         fn()
@@ -19,14 +26,6 @@ func popupHandler(fn: () -> Unit) {
         makePopup(e.message)
     }
 }
-
-func app() {
-    var error = true
-    if (error) {
-        perform Alert("error")
-    }
-}
-
 
 main() {
     stdOutHandler {

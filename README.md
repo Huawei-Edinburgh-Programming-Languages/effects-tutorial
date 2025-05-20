@@ -142,7 +142,7 @@ println("three")
 will never execute.
 
 ## 5. Default Handlers
-We have the option of defining a default handler for a `Command<T>`, meaning that an unhandled effect will be handled by a global handler for that type.
+<!-- We have the option of defining a default handler for a `Command<T>`, meaning that an unhandled effect will be handled by a global handler for that type. -->
 
 A default handler is defined by defining the `defaultImpl` instance method:
 
@@ -172,5 +172,73 @@ with no errors produced
 The full listing is in [05default.cj](05default.cj)
 
 ## 6. Dependency Injection
+Dependency inject is widely used in real-world applications. This is often provided by a heavyweight framework.
+
+However, effect handlers can provide dependency injection as a built-in language feature.
+
+Given an `Alert` effect:
+
+```
+class Alert <: Command<Unit> {
+    Alert(let message: String = message) {}
+}
+```
+
+We then abstract alert notifications from our application:
+
+```
+func app() {
+    var error = true
+    if (error) {
+        perform Alert("error")
+    }
+}
+```
+
+Then we define different handlers that inject the dependencies and run the application:
+
+```
+unc stdOutHandler(fn: () -> Unit) {
+    try {
+        fn()
+    } handle(e: Alert) {
+        println(e.message)
+    }
+}
+
+func popupHandler(fn: () -> Unit) {
+    try {
+        fn()
+    } handle(e: Alert) {
+        makePopup(e.message)
+    }
+}
+
+main() {
+    stdOutHandler {
+        application()
+    }
+    
+    // or
+    
+    popUpHandler {
+        application()
+    }
+}
+```
+
+Note the trailing closure syntax:
+```
+popUpHandler {
+   application()
+}
+```
+is equivalent to
+```
+popUpHandler({ => application() })
+```
+
+The full listing can be found in [06dependencyinjection.cj](06dependencyinjection.cj)
 
 ## 7. Custom Concurrency
+One of the most powerful features of effect handlers is the ability
