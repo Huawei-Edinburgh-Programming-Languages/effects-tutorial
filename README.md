@@ -64,6 +64,8 @@ three: 99
 four
 ```
 
+The full listing is in [02value.cj](02value.cj)
+
 ## 3. Nested effects & dynamic binding
 Effect handler have similar behaviour to exceptions when it comes to handler resolution. When we perform an effect, the runtime searches up the stack for the first handler than handles the type of effect we have performed:
 
@@ -92,6 +94,9 @@ One inner
 Two
 Error: unhandled exception "Unhandled effect"
 ```
+
+The full listing is in [03nested.cj](03nested.cj)
+
 ## 4. Deferred resumptions and implementing exceptions
 So far, all the examples we have shown have resumed immediately after handling the effect. However, we do have the option of not resuming. If we want to ignore the resumption, or store it for later use, we can used the "deferred" handle block as shown below:
 
