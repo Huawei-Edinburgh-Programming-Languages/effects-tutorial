@@ -209,7 +209,7 @@ func app() {
 Then we define different handlers that inject the dependencies and run the application:
 
 ```
-unc stdOutHandler(fn: () -> Unit) {
+func stdOutHandler(fn: () -> Unit) {
     try {
         fn()
     } handle(e: Alert) {
