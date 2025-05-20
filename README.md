@@ -42,7 +42,8 @@ The full listing can be found in [01basic.cj](01basic.cj)
 
 
 ## 2. Producing a Value
-In addition to changing control flow, `perform` can return a value and `resume` can take an argument:
+In addition to changing control flow, `perform` can return a value and
+`resume` can take an argument:
 
 ```
 try {
@@ -67,7 +68,10 @@ four
 The full listing is in [02value.cj](02value.cj)
 
 ## 3. Nested Effects and Dynamic Binding
-Effect handler have similar behaviour to exceptions when it comes to handler resolution. When we perform an effect, the runtime searches up the stack for the first handler than handles the type of effect we have performed:
+Effect handler have similar behaviour to exceptions when it comes to
+handler resolution. When we perform an effect, the runtime searches up
+the stack for the first handler than handles the type of effect we have
+performed:
 
 ```
 try {
@@ -98,7 +102,10 @@ Error: unhandled exception "Unhandled effect"
 The full listing is in [03nested.cj](03nested.cj)
 
 ## 4. Deferred Resumptions and Implementing Exceptions
-So far, all the examples we have shown have resumed immediately after handling the effect. However, we do have the option of not resuming. If we want to ignore the resumption, or store it for later use, we can used the "deferred" handle block as shown below:
+So far, all the examples we have shown have resumed immediately after
+handling the effect. However, we do have the option of not resuming. If
+we want to ignore the resumption, or store it for later use, we can used
+the "deferred" handle block as shown below:
 
 ```
 handle(e: Effect, res: Resumption<Unit>) {
@@ -106,7 +113,8 @@ handle(e: Effect, res: Resumption<Unit>) {
 }
 ```
 
-We can use this to implement behaviour equivalent to classical exceptions, as shown in [04exceptions.cj](04exceptions.cj):
+We can use this to implement behaviour equivalent to classical
+exceptions, as shown in [04exceptions.cj](04exceptions.cj):
 
 
 ```
@@ -142,7 +150,9 @@ println("three")
 will never execute.
 
 ## 5. Default Handlers
-<!-- We have the option of defining a default handler for a `Command<T>`, meaning that an unhandled effect will be handled by a global handler for that type. -->
+We have the option of defining a default handler for a `Command<T>`,
+meaning that an unhandled effect will be handled by a global handler for
+that type.
 
 A default handler is defined by defining the `defaultImpl` instance method:
 
@@ -172,7 +182,8 @@ with no errors produced
 The full listing is in [05default.cj](05default.cj)
 
 ## 6. Dependency Injection
-Dependency inject is widely used in real-world applications. This is often provided by a heavyweight framework.
+Dependency inject is widely used in real-world applications. This is
+often provided by a heavyweight framework.
 
 However, effect handlers can provide dependency injection as a built-in language feature.
 
@@ -241,11 +252,13 @@ popUpHandler({ => application() })
 The full listing can be found in [06dependencyinjection.cj](06dependencyinjection.cj)
 
 ## 7. Custom Concurrency
-One of the most powerful features of effect handlers is the ability to implement multiple types lightweight concurrency.
+One of the most powerful features of effect handlers is the ability to
+implement multiple types lightweight concurrency.
 
+[07concurrency.cj](07concurrency.cj) implements a very basic round-robin
+scheduler that allows two "threads" to execute and interleave
+cooperatively
 
-
-[07concurrency.cj](07concurrency.cj) implements a very basic round-robin scheduler that allows two "threads" to execute and interleave cooperatively
 ```
 func rrScheduler(one: () -> Unit, two: () -> Unit) {
     try {
