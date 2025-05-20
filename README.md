@@ -1,6 +1,6 @@
 # Cangjie Effect Handlers Tutorial
 
-## 1. Simple example
+## 1. Simple Example
 
 To use effects, we must first define a type that inherits from `Command<T>`:
 
@@ -41,7 +41,7 @@ four
 The full listing can be found in [01basic.cj](01basic.cj)
 
 
-## 2. Producing a value
+## 2. Producing a Value
 In addition to changing control flow, `perform` can return a value and `resume` can take an argument:
 
 ```
@@ -66,7 +66,7 @@ four
 
 The full listing is in [02value.cj](02value.cj)
 
-## 3. Nested effects & dynamic binding
+## 3. Nested Effects and Dynamic Binding
 Effect handler have similar behaviour to exceptions when it comes to handler resolution. When we perform an effect, the runtime searches up the stack for the first handler than handles the type of effect we have performed:
 
 ```
@@ -97,7 +97,7 @@ Error: unhandled exception "Unhandled effect"
 
 The full listing is in [03nested.cj](03nested.cj)
 
-## 4. Deferred resumptions and implementing exceptions
+## 4. Deferred Resumptions and Implementing Exceptions
 So far, all the examples we have shown have resumed immediately after handling the effect. However, we do have the option of not resuming. If we want to ignore the resumption, or store it for later use, we can used the "deferred" handle block as shown below:
 
 ```
@@ -141,3 +141,8 @@ println("three")
 ```
 will never execute.
 
+## 5. Default Handlers
+
+## 6. Dependency Injection
+C
+## 7. Custom oncurrency
