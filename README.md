@@ -1,4 +1,4 @@
-# Cangjie Effect Hanlers Tutorial
+# Cangjie Effect Handlers Tutorial
 
 ## 1. Simple example
 
@@ -91,5 +91,7 @@ One
 One inner
 Two
 Error: unhandled exception "Unhandled effect"
+```
+## 4. Deferred resumptions and implementing exceptions
 
-## 4. 
+
