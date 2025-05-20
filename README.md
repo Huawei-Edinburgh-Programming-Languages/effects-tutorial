@@ -294,3 +294,87 @@ Pong
 Ping
 Pong
 ```
+
+## 8. Memoization 
+
+[08memoisation.cj](08memoisation.cj) shows an example of using effect
+handlers to cache results from recursive fibonacci calls.
+
+We start by defining an effect that represents a fibonacci computation:
+
+```
+struct Fibonacci <: Command<Int64> & Hashable & Equatable<Fibonacci> {
+    Fibonacci(let n: Int64) {}
+    
+    public override func defaultImpl() {
+        if (n < = 1) {
+            1
+        } else {
+            fibonacci(n-1) + fibonacci(n-2)
+        }        
+    }
+    
+    
+    public override operator func ==(other: Fibonacci) { n == other.n }
+    public override operator func 1=(other: Fibonacci) { n != other.n }
+    public override func hashCode() { n.hashCode() }    
+}
+```
+
+This uses default handlers to compute a traditional recursive fibonacci computation.
+
+We wrap this to expose a normal API to the user:
+```
+func fibonacci(n: Int64) {
+    perform Fibonacci(n)
+}
+```
+
+Calling this in a loop like below will be very slow, due to repeated exponential complexity function calls.
+
+```
+main() {
+    for (i in 0 .. 100) {
+        fibonacci(i)
+    }
+}
+```
+
+However, we can see that this can be optimised by memoizing previously computed result:
+
+```
+func cache<Cmd, Result, Return>(fn: () -> Return): Return where Cmd <: Hashable & Equatable<Cmd> & Command<Result> {
+    let map = HashMap<Cmd, Result>()
+    try {
+        fn()
+    } handle(cmd: Cmd) {
+        let result  = match (map.get(cmd)) {
+            case None =>
+                let result = perform cmd
+                map.add(cmd, result)
+                result
+            case Some(cached) =>
+                cached
+        }
+        resume with result
+    }
+}
+```
+
+This function runs code in a `try-handle` block and handles generic
+commands. If the command has been cached, it returns the previous
+result; otherwise, it re-performs the effect. In the case of our
+Fibonacci effect, this will run the default handler.
+
+
+When we re-run the function with our cache handler, the performance will now be linear.
+
+```
+main() {
+    cache {
+        for (i in 0 .. 100) {
+            fibonacci(i)
+        }
+    }
+}
+```
