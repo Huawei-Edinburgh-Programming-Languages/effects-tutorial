@@ -93,5 +93,46 @@ Two
 Error: unhandled exception "Unhandled effect"
 ```
 ## 4. Deferred resumptions and implementing exceptions
+So far, all the examples we have shown have resumed immediately after handling the effect. However, we do have the option of not resuming. If we want to ignore the resumption, or store it for later use, we can used the "deferred" handle block as shown below:
 
+```
+handle(e: Effect, res: Resumption<Unit>) {
+    ...
+}
+```
+
+We can use this to implement behaviour equivalent to classical exceptions, as shown in [04exceptions.cj](04exceptions.cj):
+
+
+```
+class EffException <: Command<Unit> {
+    public EffException(let msg:String = msg) {}
+}
+
+
+main() {
+    try {
+        println("one")
+        perform EffException("error")
+        println("three")
+    } handle(e: EffException, _: Resumption<Unit>) {
+        println("two:  ${e.msg}")
+    }
+    println("four")
+}
+```
+
+The output of this program will be:
+
+```
+one
+two: error
+four
+```
+
+the line
+```
+println("three")
+```
+will never execute.
 
