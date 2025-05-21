@@ -44,7 +44,7 @@ main() {
         fibonacci(i)
     }
     
-    cache<Fibonacci, Int64, Int64> {
+    cache<Fibonacci, Int64, Unit> {
         for (i in 0 .. 100) {
             fibonacci(i)
         }
