@@ -222,7 +222,7 @@ func stdOutHandler(fn: () -> Unit) {
     }
 }
 
-func popupHandler(fn: () -> Unit) {
+func popUpHandler(fn: () -> Unit) {
     try {
         fn()
     } handle(e: Alert) {
@@ -233,13 +233,13 @@ func popupHandler(fn: () -> Unit) {
 
 main() {
     stdOutHandler {
-        application()
+        app()
     }
     
     // or
     
     popUpHandler {
-        application()
+        app()
     }
 }
 ```
