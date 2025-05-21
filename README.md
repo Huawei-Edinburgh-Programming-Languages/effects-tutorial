@@ -81,12 +81,15 @@ try {
         perform Two()
     } handle (e: One) {
         println("One inner")
+        resume
     } handle (e: Two) {
         println("Two")
+        resume
     }
     perform Two()
 } handle(e: One) {
     println("One")
+    resume
 }
 ```
 
