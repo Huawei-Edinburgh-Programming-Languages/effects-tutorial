@@ -218,6 +218,7 @@ func stdOutHandler(fn: () -> Unit) {
         fn()
     } handle(e: Alert) {
         println(e.message)
+        resume
     }
 }
 
@@ -226,6 +227,7 @@ func popupHandler(fn: () -> Unit) {
         fn()
     } handle(e: Alert) {
         makePopup(e.message)
+        resume
     }
 }
 
