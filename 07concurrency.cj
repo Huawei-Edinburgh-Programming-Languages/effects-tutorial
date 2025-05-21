@@ -1,4 +1,4 @@
-import stdx.effect.Command
+import stdx.effect.{Command, Resumption}
 
 class Yield <: Command<Unit> {}
 
