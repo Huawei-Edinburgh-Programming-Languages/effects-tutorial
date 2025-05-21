@@ -5,9 +5,9 @@ class ValueEffect <: Command<Int64> {}
 main() {
     try {
         println("one")
-        var foo = perform Example()
+        var foo = perform ValueEffect()
         println("three: ${foo}")
-    } handle (e: Example) {
+    } handle (e: ValueEffect) {
         println("two")
         resume with 99
     }
