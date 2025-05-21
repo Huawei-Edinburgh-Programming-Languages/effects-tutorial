@@ -1,7 +1,7 @@
 import std.collection.HashMap
 import stdx.effect.Command
 
-struct Fibonacci <: Command<Int64> & Hashable & Equatable<Fibonacci> {
+class Fibonacci <: Command<Int64> & Hashable & Equatable<Fibonacci> {
     Fibonacci(let n: Int64) {}
     
     public override func defaultImpl() {
