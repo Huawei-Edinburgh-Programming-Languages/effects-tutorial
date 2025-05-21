@@ -2,7 +2,7 @@ import stdx.effect.Command
 
 class Example <: Command<Unit> {}
 
-main {
+main() {
 	try {
 		println("one")
 		perform Example()

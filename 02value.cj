@@ -2,7 +2,7 @@ import stdx.effect.Command
 
 class ValueEffect <: Command<Int64> {}
 
-main {
+main() {
     try {
         println("one")
         var foo = perform Example()
