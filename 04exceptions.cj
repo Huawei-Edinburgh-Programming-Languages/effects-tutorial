@@ -11,7 +11,7 @@ main() {
         perform EffException("error")
         println("three")
     } handle(e: EffException, _: Resumption<Unit, Unit>) {
-        println("two:  ${e.msg}")
+        println("two: ${e.msg}")
     }
     println("four")
 }
