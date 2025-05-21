@@ -99,7 +99,8 @@ The resulting output will be
 One
 One inner
 Two
-Error: unhandled exception "Unhandled effect"
+An exception has occurred:
+UnhandledCommand: Unhandled command
 ```
 
 The full listing is in [03nested.cj](03nested.cj)
