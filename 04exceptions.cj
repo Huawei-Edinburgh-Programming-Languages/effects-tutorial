@@ -1,7 +1,7 @@
 import stdx.effect.Command
 
 class EffException <: Command<Unit> {
-    public EffException(let msg:String = msg) {}
+    public EffException(let msg: String) {}
 }
 
 

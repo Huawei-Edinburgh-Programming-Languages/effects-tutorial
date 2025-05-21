@@ -123,7 +123,7 @@ exceptions, as shown in [04exceptions.cj](04exceptions.cj):
 
 ```
 class EffException <: Command<Unit> {
-    public EffException(let msg:String = msg) {}
+    public EffException(let msg: String) {}
 }
 
 
