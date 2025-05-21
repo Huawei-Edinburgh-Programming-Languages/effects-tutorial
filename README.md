@@ -195,7 +195,7 @@ Given an `Alert` effect:
 
 ```
 class Alert <: Command<Unit> {
-    Alert(let message: String = message) {}
+    Alert(let message: String) {}
 }
 ```
 

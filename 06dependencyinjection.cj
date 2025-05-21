@@ -5,7 +5,7 @@ func makePopup(msg: String) {
 }
 
 class Alert <: Command<Unit> {
-    Alert(let message: String = message) {}
+    Alert(let message: String) {}
 }
 
 func app() {
