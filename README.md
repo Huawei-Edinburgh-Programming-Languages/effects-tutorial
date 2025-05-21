@@ -377,7 +377,7 @@ When we re-run the function with our cache handler, the performance will now be 
 
 ```
 main() {
-    cache {
+    cache<Fibonacci, Int64, Unit> {
         for (i in 0 .. 100) {
             fibonacci(i)
         }
