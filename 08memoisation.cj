@@ -41,14 +41,14 @@ func cache<Cmd, Result, Return>(fn: () -> Return): Return where Cmd <: Hashable 
 
 main() {
     println("uncached")
-    for (i in 0 .. 10) {
+    for (i in 0 .. 30) {
         println(i)
         fibonacci(i)
     }
     
     println("cached")
     cache<Fibonacci, Int64, Unit> {
-        for (i in 0 .. 10) {
+        for (i in 0 .. 30) {
             println(i)
             fibonacci(i)
         }
