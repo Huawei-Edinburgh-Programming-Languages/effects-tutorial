@@ -341,7 +341,7 @@ Calling this in a loop like below will be very slow, due to repeated exponential
 ```
 main() {
     for (i in 0 .. 100) {
-        fibonacci(i)
+        fibonacci(30)
     }
 }
 ```
@@ -379,7 +379,7 @@ When we re-run the function with our cache handler, the performance will now be 
 main() {
     cache<Fibonacci, Int64, Unit> {
         for (i in 0 .. 100) {
-            fibonacci(i)
+            fibonacci(30)
         }
     }
 }
