@@ -313,7 +313,7 @@ struct Fibonacci <: Command<Int64> & Hashable & Equatable<Fibonacci> {
     Fibonacci(let n: Int64) {}
     
     public override func defaultImpl() {
-        if (n < = 1) {
+        if (n <= 1) {
             1
         } else {
             fibonacci(n-1) + fibonacci(n-2)
@@ -322,7 +322,7 @@ struct Fibonacci <: Command<Int64> & Hashable & Equatable<Fibonacci> {
     
     
     public override operator func ==(other: Fibonacci) { n == other.n }
-    public override operator func 1=(other: Fibonacci) { n != other.n }
+    public override operator func !=(other: Fibonacci) { n != other.n }
     public override func hashCode() { n.hashCode() }    
 }
 ```
