@@ -6,7 +6,7 @@ func rrScheduler(one: () -> Unit, two: () -> Unit): Unit {
     try {
         one()
     } handle(_: Yield, r: Resumption<Unit, Unit>) {
-        rrScheduler(u, { => resume r})
+        rrScheduler(two, { => resume r})
     }
 }
 
