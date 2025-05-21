@@ -266,11 +266,11 @@ scheduler that allows two "threads" to execute and interleave
 cooperatively
 
 ```
-func rrScheduler(one: () -> Unit, two: () -> Unit) {
+func rrScheduler(one: () -> Unit, two: () -> Unit): Unit {
     try {
         one()
-    } handle(_: Yield) {
-        rrScheduler(u, { => resume })
+    } handle(_: Yield, r: Resumption<Unit, Unit>) {
+        rrScheduler(u, { => resume r})
     }
 }
 

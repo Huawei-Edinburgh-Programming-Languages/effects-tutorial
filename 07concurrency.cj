@@ -2,11 +2,11 @@ import stdx.effect.Command
 
 class Yield <: Command<Unit> {}
 
-func rrScheduler(one: () -> Unit, two: () -> Unit) {
+func rrScheduler(one: () -> Unit, two: () -> Unit): Unit {
     try {
         one()
-    } handle(_: Yield) {
-        rrScheduler(u, { => resume })
+    } handle(_: Yield, r: Resumption<Unit, Unit>) {
+        rrScheduler(u, { => resume r})
     }
 }
 
