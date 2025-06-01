@@ -1,4 +1,4 @@
-# Cangjie Effect Handlers Tutorial
+# Cangjie Effect Handlers Examples
 
 These examples should be preceded by a careful reading of the Cangjie effect handlers [tutorial](https://wiki.huawei.com/domains/4014/wiki/10108/WIKI202406273876657).
 
@@ -70,10 +70,12 @@ four
 The full listing is in [02value.cj](02value.cj)
 
 ## 3. Nested Effects and Dynamic Binding
-Effect handler have similar behaviour to exceptions when it comes to
+Effect handlers have similar behaviour to exceptions when it comes to
 handler resolution. When we perform an effect, the runtime searches up
 the stack for the first handler than handles the type of effect we have
-performed:
+performed. However, the `resume` command returns the flow of control at 
+the point where the effect was performed rather than exit the handler
+as is the case with exceptions:
 
 ```
 try {
@@ -188,6 +190,10 @@ with no errors produced
 The full listing is in [05default.cj](05default.cj)
 
 ## 6. Dependency Injection
+
+> *Note*: This example is a _design pattern_, in the sense that it can be adapted 
+> to deal with a large number of realistic and useful scenarios. 
+
 Dependency inject is widely used in real-world applications. This is
 often provided by a heavyweight framework.
 
@@ -260,6 +266,10 @@ popUpHandler({ => application() })
 The full listing can be found in [06dependencyinjection.cj](06dependencyinjection.cj)
 
 ## 7. Custom Concurrency
+
+> *Note*: this example is a _design pattern_, i.e. it can be adapted and customized
+> to provide a recipe for many important practical scenarios. 
+
 One of the most powerful features of effect handlers is the ability to
 implement multiple types lightweight concurrency.
 
@@ -304,6 +314,10 @@ Pong
 ```
 
 ## 8. Memoization 
+
+> *Note*: This more complex example is based on the _dependency injection_ design pattern,
+> also using _global handlers_ to achive a challenging programming task, memoizing
+> recursive functions. 
 
 [08memoisation.cj](08memoisation.cj) shows an example of using effect
 handlers to cache results from recursive fibonacci calls.
