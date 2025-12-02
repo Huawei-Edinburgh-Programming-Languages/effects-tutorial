@@ -1,6 +1,6 @@
 # Cangjie Effect Handlers Examples
 
-These examples should be preceded by a careful reading of the Cangjie effect handlers [tutorial](https://wiki.huawei.com/domains/4014/wiki/10108/WIKI202406273876657).
+These examples should be preceded by a careful reading of the Cangjie effect handlers tutorial
 
 ## 1. Simple Example
 
